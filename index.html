@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SYNTAXer - Placement Training Institute</title>
+  <style>
+    /* Default Light Theme */
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #222222;
+      overflow-x: hidden;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    header {
+      background: #f5f5f5;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+      transition: background-color 0.5s ease;
+    }
+
+    header h1 {
+      color: #0a47a1;
+      margin: 0;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 2px;
+      cursor: default;
+      transition: color 0.5s ease;
+    }
+
+    nav a {
+      color: #222222;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0a47a1;
+    }
+
+    /* Theme toggle button */
+    #theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: #0a47a1;
+      transition: color 0.5s ease;
+    }
+    #theme-toggle:hover {
+      color: #05408a;
+    }
+
+    /* Hero Slideshow Styles */
+    .hero {
+      position: relative;
+      height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #222222;
+      overflow: hidden;
+      background: #e3eaf7;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 20px;
+      text-shadow: 0 0 6px rgba(255 255 255 / 0.8);
+    }
+
+    .hero-content h2 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-content p {
+      font-size: 22px;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .hero-content button {
+      padding: 16px 36px;
+      font-size: 18px;
+      background-color: #0a47a1;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(10, 71, 161, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-content button:hover {
+      background-color: #053d8a;
+      box-shadow: 0 8px 20px rgba(5, 61, 138, 0.7);
+    }
+
+    /* Journey timeline */
+    #journey {
+      max-width: 960px;
+      margin: 60px auto 80px auto;
+      padding: 0 20px;
+      color: #222222;
+      transition: color 0.5s ease;
+    }
+
+    #journey h3 {
+      text-align: center;
+      font-size: 36px;
+      color: #0a47a1;
+      margin-bottom: 40px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      transition: color 0.5s ease;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .timeline-item {
+      flex: 1 1 220px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 28px 20px;
+      box-shadow: 0 0 12px rgb(0 0 0 / 0.05);
+      text-align: center;
+      transition: transform 0.3s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+      cursor: default;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 18px #0a47a1;
+    }
+
+    .timeline-icon {
+      font-size: 50px;
+      color: #0a47a1;
+      margin-bottom: 20px;
+      transition: color 0.5s ease;
+    }
+
+    .timeline-item h4 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #0a47a1;
+      transition: color 0.5s ease;
+    }
+
+    .timeline-item p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.4;
+      transition: color 0.5s ease;
+    }
+
+    /* Footer */
+    footer {
+      background: #f5f5f5;
+      color: #444444;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+      margin-top: 40px;
+      user-select: none;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .timeline {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .timeline-item {
+        width: 80%;
+      }
+    }
+
+    /* Dark theme overrides */
+    body.dark-theme {
+      background: #0d1117;
+      color: #c9d1d9;
+    }
+    body.dark-theme header {
+      background: #161b22;
+      box-shadow: none;
+    }
+    body.dark-theme header h1 {
+      color: #58a6ff;
+    }
+    body.dark-theme nav a {
+      color: #c9d1d9;
+    }
+    body.dark-theme nav a:hover {
+      color: #58a6ff;
+    }
+    body.dark-theme #theme-toggle {
+      color: #58a6ff;
+    }
+    body.dark-theme .hero {
+      background: #0d1117;
+      color: #c9d1d9;
+    }
+    body.dark-theme .hero-content {
+      text-shadow: 0 0 12px rgba(0,0,0,0.9);
+    }
+    body.dark-theme .hero-content button {
+      background-color: #58a6ff;
+      color: #0d1117;
+      box-shadow: 0 5px 15px rgba(88, 166, 255, 0.5);
+    }
+    body.dark-theme .hero-content button:hover {
+      background-color: #1f6feb;
+      box-shadow: 0 8px 20px rgba(31, 111, 235, 0.7);
+    }
+    body.dark-theme #journey {
+      color: #c9d1d9;
+    }
+    body.dark-theme #journey h3 {
+      color: #58a6ff;
+    }
+    body.dark-theme .timeline-item {
+      background: #161b22;
+      box-shadow: none;
+    }
+    body.dark-theme .timeline-item:hover {
+      box-shadow: 0 0 18px #58a6ff;
+    }
+    body.dark-theme .timeline-icon,
+    body.dark-theme .timeline-item h4 {
+      color: #58a6ff;
+    }
+    body.dark-theme .timeline-item p {
+      color: #c9d1d9;
+    }
+    body.dark-theme footer {
+      background: #161b22;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SYNTAXer</h1>
+    <nav>
+      <a href="#journey">Journey</a>
+      <a href="#courses">Courses</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-slide active" style="background-image: url('https://unsplash.com/photos/silhouette-of-deer-beside-body-of-water-Qf4eZXC3t2Y');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1470&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1470&q=80');"></div>
+
+    <div class="hero-content">
+      <h2>Become a SYNTAXer</h2>
+      <p>Your journey from student to professional starts here</p>
+      <button onclick="alert('Get started by contacting us!')">Get Started</button>
+    </div>
+  </div>
+
+  <section id="journey">
+    <h3>Your Journey with SYNTAXer</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">🎓</div>
+        <h4>Focused Student</h4>
+        <p>Start with dedicated learning and strong fundamentals in coding and aptitude.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">💻</div>
+        <h4>Intense Coding Practice</h4>
+        <p>Sharpen your programming skills with real-world problems and mock interviews.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">🤝</div>
+        <h4>Confident Interviews</h4>
+        <p>Master soft skills, resume building, and face interviews with confidence.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">👔</div>
+        <h4>Professional Career</h4>
+        <p>Step into your dream job, prepared and empowered for success.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add your other sections here -->
+
+  <footer>
+    &copy; 2025 SYNTAXer. All rights reserved.
+  </footer>
+
+  <script>
+    // Hero slideshow logic
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+
+    function nextSlide() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+    // Dark/light theme toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      // Change icon on toggle
+      if(document.body.classList.contains('dark-theme')){
+        toggleBtn.textContent = '☀️';
+      } else {
+        toggleBtn.textContent = '🌙';
+      }
+    });
+  </script>
+
+</body>
+</html>
